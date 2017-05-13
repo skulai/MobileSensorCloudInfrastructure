@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mobile Sensor Cloud IaaS</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS
+    <link href="../static/css/plugins/morris.css" rel="stylesheet"> -->
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpzSneidGpwdDw7cVytvKc65Wd7-rQ_Fs"
+            type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <style>
+    #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+      }
+      #legend h3 {
+        margin-top: 0;
+      }
+      #legend img {
+        vertical-align: middle;
+      }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/UserDashboard">Welcome {{name}}</a>
+            </div>
+
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>{{name}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Hello class, Submit Mobile Sensor IaaS project on time.</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Monitor Sensor Status</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{name}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+		   <li class="active">
+                        <a href="/UserDashboard" class="btn btn-info"><i class="fa fa-fw fa-dashboard"></i>DASHBOARD</a>
+                    </li>
+		   <li class="active">
+		    <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="btn btn-info" aria-expanded="true"><i class="fa fa-fw fa-cloud"></i> SENSOR NETWORK <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse in" aria-expanded="true" style="">
+			    <li style ="margin-bottom:3px;" class="active">
+                                <a href="/view" class="btn btn-secondary btn-md"><i class="fa fa-eye"></i> VIEW</a>
+                            </li>
+			    <li style ="margin-bottom:3px;">
+                                <a href="/create" class="btn btn-secondary btn-md"><i class="fa fa-cubes"></i>CREATE</a>
+                            </li>
+                        </ul>
+		    </li>
+		    <li class="active">
+		    <a href="javascript:;" data-toggle="collapse" data-target="#billing" class="btn btn-info" aria-expanded="true"><i class="fa fa-fw fa-credit-card"></i> BILLING AND</br> MONITORING <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="billing" class="collapse" aria-expanded="true" style="">
+			    <li style ="margin-bottom:3px;">
+                                <a href="/billingMetrics" class="btn btn-secondary btn-md"><i class="fa fa-bars"></i> BILLING METRICS</a>
+                            </li>
+			    <li style ="margin-bottom:3px;">
+                                <a href="/usage" class="btn btn-secondary btn-md"><i class="fa fa-pie-chart"></i> USAGE</a>
+                            </li>
+                            <li style ="margin-bottom:3px;">
+                                <a href="/UserBilling" class="btn btn-secondary btn-md"><i class="fa fa-dollar"></i> GENERATE BILL</a>
+                            </li>
+
+                        </ul>
+		    </li>
+		    <li class="active">
+                        <a href="/UserProfile" class="btn btn-info"><i class="fa fa-fw fa-cog"></i>SETTINGS</a>
+                    </li>
+		    <li class="active">
+                        <a href="/signOut" class="btn btn-info"><i class="fa fa-fw fa-power-off"></i>LOG OUT</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            SENSOR SERVICES</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Dashboard
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <h4>Please choose Sensors of your choice: </h4>
+                <div id="map" style="width: 500px; height: 400px;"></div>
+                <div id="legend"><h3>Sensor Types</h3></div>
+                <div>
+                    <p id="sensorname"></p>
+                    <button id="del">Delete Sensors</button>
+                    <br><br>
+                    <label>Enter Virtual Sensor Network Name:</label>
+                    <input type = "text" id = "network" />
+                    <button id="add">Create Network</button>
+                    <p id="result"></p>
+                </div>
+
+                <script type="text/javascript">
+
+                var temperature = JSON.parse('{{temperature|safe}}');
+                var pressure = JSON.parse('{{pressure|safe}}');
+                var humidity = JSON.parse('{{humidity|safe}}');
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker1, marker2, marker3, i, send, networkName;
+                var selected = [];
+                var display = [];
+
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: new google.maps.LatLng(-33.85, 151.25),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                  });
+
+                  var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+                   new google.maps.Size(40, 37),
+                   new google.maps.Point(0, 0),
+                   new google.maps.Point(12, 35));
+
+                   var lineSymbol = {
+                     path: google.maps.SymbolPath.CIRCLE,
+                     scale: 4,
+                     strokeColor: '#393'
+                   };
+
+                   var iconBase = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|';
+                   var icons = {
+                     temperature: {
+                       name: 'Temperature',
+                       icon: iconBase + 'FE7569'
+                     },
+                     pressure: {
+                       name: 'Pressure',
+                       icon: iconBase + '75FE69'
+                     },
+                     humidity: {
+                       name: 'Humidity',
+                       icon: iconBase + '7569FE'
+                     }
+                   };
+
+                //temperature markers
+                   for (i = 0; i < temperature.length; i++) {
+                     var pinColor = "FE7569";
+                     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                      new google.maps.Size(21, 34),
+                      new google.maps.Point(0,0),
+                      new google.maps.Point(10, 34));
+
+                     var line = new google.maps.Polyline({
+                       path: [{lat: parseFloat(temperature[i][1]), lng: parseFloat(temperature[i][2])}, {lat:parseFloat(temperature[i][1])+0.01, lng: parseFloat(temperature[i][2])}],
+                       icons: [{
+                         icon: lineSymbol,
+                         offset: '10%'
+                       }],
+                       map: map
+                     });
+                   marker1 = new google.maps.Marker({
+                     position: new google.maps.LatLng(temperature[i][1], temperature[i][2]),
+                     map: map,
+                     icon: pinImage,
+                     shadow: pinShadow,
+                   });
+
+
+                     google.maps.event.addListener(marker1, 'mouseover', (function(marker1, i) {
+                       return function() {
+                         infowindow.setContent(temperature[i][0]);
+                         infowindow.open(map, marker1);
+                       }
+                     })(marker1, i));
+
+                     google.maps.event.addListener(marker1, 'click', (function (marker1,i) {
+                       return function() {
+                         selected.push(temperature[i][3]);
+                         display.push(temperature[i][0]);
+                         document.getElementById("sensorname").innerHTML = display;
+                     }})(marker1,i));
+
+                   animateCircle(line)
+                 }
+
+             //Pressure markers
+                 for (i = 0; i < pressure.length; i++) {
+
+                   pinColor = "75FE69";
+                   pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                   new google.maps.Size(21, 34),
+                   new google.maps.Point(0,0),
+                   new google.maps.Point(10, 34));
+
+                   var line = new google.maps.Polyline({
+                     path: [{lat: parseFloat(pressure[i][1]), lng: parseFloat(pressure[i][2])}, {lat:parseFloat(pressure[i][1])+0.01, lng: parseFloat(pressure[i][2])}],
+                     icons: [{
+                       icon: lineSymbol,
+                       offset: '10%'
+                     }],
+                     map: map
+                   });
+
+                 marker2 = new google.maps.Marker({
+                   position: new google.maps.LatLng(pressure[i][1], pressure[i][2]),
+                   map: map,
+                   icon: pinImage,
+                   shadow: pinShadow,
+                 });
+
+                   google.maps.event.addListener(marker2, 'mouseover', (function(marker2, i) {
+                     return function() {
+                       infowindow.setContent(pressure[i][0]);
+                       infowindow.open(map, marker2);
+                     }
+                   })(marker2, i));
+
+                   google.maps.event.addListener(marker2, 'click', (function (marker2,i) {
+                     return function() {
+                       selected.push(pressure[i][3]);
+                       display.push(pressure[i][0]);
+                       document.getElementById("sensorname").innerHTML = display;
+                   }})(marker2,i));
+
+                 animateCircle(line)
+               }
+
+               //humidity markers
+               for (i = 0; i < humidity.length; i++) {
+                 pinColor = "7569FE";
+                 pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                 new google.maps.Size(21, 34),
+                 new google.maps.Point(0,0),
+                 new google.maps.Point(10, 34));
+
+                 var line = new google.maps.Polyline({
+                   path: [{lat: parseFloat(humidity[i][1]), lng: parseFloat(humidity[i][2])}, {lat:parseFloat(humidity[i][1])+0.01, lng: parseFloat(humidity[i][2])}],
+                   icons: [{
+                     icon: lineSymbol,
+                     offset: '10%'
+                   }],
+                   map: map
+                 });
+
+               marker3 = new google.maps.Marker({
+                 position: new google.maps.LatLng(humidity[i][1], humidity[i][2]),
+                 map: map,
+                 icon: pinImage,
+                 shadow: pinShadow,
+               });
+
+                 google.maps.event.addListener(marker3, 'mouseover', (function(marker3, i) {
+                   return function() {
+                     infowindow.setContent(humidity[i][0]);
+                     infowindow.open(map, marker3);
+                   }
+                 })(marker3, i));
+
+                 google.maps.event.addListener(marker3, 'click', (function (marker3,i) {
+                   return function() {
+                     selected.push(humidity[i][3]);
+                     display.push(humidity[i][0]);
+                     document.getElementById("sensorname").innerHTML = display;
+                 }})(marker3,i));
+
+               animateCircle(line)
+             }
+
+             var legend = document.getElementById('legend');
+              for (var key in icons) {
+                var type = icons[key];
+                var name = type.name;
+                var icon = type.icon;
+                var div = document.createElement('div');
+                div.innerHTML = '<img src="' + icon + '"> ' + name;
+                legend.appendChild(div);
+              }
+
+              map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+                </script>
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript
+    <script src="../static/js/plugins/morris/raphael.min.js"></script>
+    <script src="../static/js/plugins/morris/morris.min.js"></script>
+    <script src="../static/js/plugins/morris/morris-data.js"></script> -->
+     <script>
+                                           $(document).ready(function(){
+                                            $('#addS').click(function(){
+                                                        alert("yes");
+                                                    $('#showSuccess').show();
+                                            });
+                                            });
+                                        </script>
+
+</body>
+
+</html>

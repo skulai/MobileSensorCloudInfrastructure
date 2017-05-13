@@ -1,0 +1,6 @@
+Flask==0.10.1
+mysql-python
+flask-mysql
+validate_email
+boto3
+awscli

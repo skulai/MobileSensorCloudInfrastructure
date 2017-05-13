@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mobile Cloud Infrastructure</title>
+
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="/">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">New user Sign up</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h3>Create your account</h3>
+        <form class="form-signin">
+
+        <label for="inputName" class="sr-only">Full Name</label>
+        <input type="name" name="fullName" id="fullName" class="form-control" placeholder="FullName" required autofocus>
+
+        <label for="inputName" class="sr-only">Credit Card Info</label>
+        <input type="name" name="creditCard" id="creditCard" class="form-control" placeholder="CreditCardInfo" required autofocus>
+
+        <label for="inputName" class="sr-only">Address</label>
+        <input type="name" name="address" id="address" class="form-control" placeholder="Address" required autofocus>
+
+        <label for="inputName" class="sr-only">User Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="UserName" required autofocus>
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="confirmPassword" class="sr-only">Confirm Password</label>
+        <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+
+
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+        <p id="result"></p>
+      </form>
+      </div>
+
+    </div>
+  </body>
+</html>
